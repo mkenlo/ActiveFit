@@ -109,7 +109,7 @@ public class SplashActivity extends AppCompatActivity {
         // while interacting with the UI.
         //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
         Intent intent = new Intent(getApplicationContext(),
-                HomeActivity.class);
+                ProfileSetupActivity.class);
         startActivity(intent);
         finish();
     }

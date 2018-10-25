@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileSetupActivity">
+    tools:context=".ProfileSetupActivity"
+    android:padding="@dimen/activity_horizontal_margin">
 
 
     <android.support.v4.view.ViewPager
@@ -17,7 +18,8 @@
     <LinearLayout android:orientation="horizontal"
         android:gravity="center" android:measureWithLargestChild="true"
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_weight="0">
+        android:layout_weight="0"
+        app:layout_constraintBottom_toBottomOf="parent">
         <Button android:id="@+id/goto_first"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="first">
