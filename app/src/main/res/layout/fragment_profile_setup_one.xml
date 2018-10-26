@@ -4,18 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProfileSetupOneFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="How old are you?"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:id="@+id/tv_age"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
@@ -26,21 +28,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="What is your gender?"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"/>
+            android:text="Male"
+            android:padding="@dimen/activity_horizontal_margin"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"/>
+            android:text="Female"
+            android:padding="@dimen/activity_horizontal_margin"/>
     </RadioGroup>
 
     <ImageButton

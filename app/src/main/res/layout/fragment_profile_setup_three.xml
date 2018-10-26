@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.ProfileSetupThreeFragment">
+    tools:context=".fragment.ProfileSetupThreeFragment"
+    android:padding="@dimen/activity_horizontal_margin">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="What is your daily steps target?" />
+        android:text="What is your daily steps target?"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
     <Spinner
         android:id="@+id/sp_target_steps"
@@ -24,13 +26,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="What is your weight target?" />
+        android:text="What is your weight target?"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
 
     <SeekBar
         android:id="@+id/sb_target_weight"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
     <ImageButton
         android:id="@+id/ib_previous"

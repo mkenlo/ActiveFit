@@ -1,7 +1,6 @@
 package com.mkenlo.activefit.fragment;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.mkenlo.activefit.HomeActivity;
-import com.mkenlo.activefit.ProfileSetupActivity;
+import com.mkenlo.activefit.MainActivity;
 import com.mkenlo.activefit.R;
 
 import butterknife.BindView;
@@ -38,7 +36,7 @@ public class ProfileSetupThreeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),
-                        HomeActivity.class);
+                        MainActivity.class);
                 startActivity(intent);
             }
         });

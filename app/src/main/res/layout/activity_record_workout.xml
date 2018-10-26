@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecordWorkoutActivity"
+    android:padding="@dimen/activity_horizontal_margin">
+
+
+    <RadioGroup
+        android:id="@+id/select_workout_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walking"
+            android:padding="@dimen/activity_horizontal_margin"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Running"
+            android:padding="@dimen/activity_horizontal_margin"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_workout_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        app:layout_constraintTop_toBottomOf="@id/select_workout_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="80dp"/>
+
+    <Spinner
+        android:id="@+id/select_workout_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/tv_workout_duration"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/activity_horizontal_margin">
+    </Spinner>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/control_workout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+</android.support.constraint.ConstraintLayout>
