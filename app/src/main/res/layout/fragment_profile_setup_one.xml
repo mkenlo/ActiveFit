@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How old are you?"
+        android:text="@string/profile_ask_age"
         android:layout_gravity="center_horizontal"
         android:padding="@dimen/activity_horizontal_margin"/>
 
@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is your gender?"
+        android:text="@string/profile_ask_gender"
         android:layout_gravity="center_horizontal"
         android:padding="@dimen/activity_horizontal_margin"/>
 
@@ -40,12 +40,17 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
+            android:text="@string/gender_male"
             android:padding="@dimen/activity_horizontal_margin"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"
+            android:text="@string/gender_female"
+            android:padding="@dimen/activity_horizontal_margin"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender_no_gender"
             android:padding="@dimen/activity_horizontal_margin"/>
     </RadioGroup>
 

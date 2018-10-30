@@ -16,6 +16,6 @@ public interface GoalDao {
     @Update
     void updateGoal(Goals goal);
 
-    @Query("SELECT * FROM Goals")
+    @Query("SELECT * FROM fitness_goals")
     Goals getGoals();
 }

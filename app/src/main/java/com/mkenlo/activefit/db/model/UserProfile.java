@@ -1,6 +1,13 @@
 package com.mkenlo.activefit.db.model;
 
-public class Profile {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "userprofile")
+public class UserProfile {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String username;
     private String gender;
     int age;
@@ -8,7 +15,8 @@ public class Profile {
     double height;
 
 
-    public Profile() {
+
+    public UserProfile() {
     }
 
     public String getUsername() {

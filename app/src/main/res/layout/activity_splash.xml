@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
+    <TextView
+        android:id = "@+id/tv_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="@dimen/text_large"
+        android:textColor="@color/colorTextWhite"
+        android:layout_marginTop="48dp"
+        android:textStyle="bold"
+        android:padding="@dimen/activity_horizontal_margin"/>
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="128dp"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:src="@drawable/ic_trail_running_shoe"/>
-    
+        android:src="@drawable/ic_trail_running_shoe"
+        app:layout_constraintTop_toBottomOf="@id/tv_appname"/>
+
     <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/app_name"
-        android:textColor="#fff"
-        android:textSize="44sp"
-        android:textStyle="bold" />
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/app_moto"
+        android:textColor="@color/colorTextWhite"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:letterSpacing="2"/>
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
-
-
-        </LinearLayout>
-    </FrameLayout>
-
-</FrameLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/action_app_start"
+        android:background="@color/colorTextWhite"
+        android:textColor="@color/colorPrimaryDark"/>
+</android.support.constraint.ConstraintLayout>

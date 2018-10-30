@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
             selectedItem = mBottomNavigation.getMenu().findItem(mSelectedItem);
         } else {
-            selectedItem = mBottomNavigation.getMenu().getItem(0);
+            selectedItem = mBottomNavigation.getMenu().getItem(2);
         }
         selectFragment(selectedItem);
 

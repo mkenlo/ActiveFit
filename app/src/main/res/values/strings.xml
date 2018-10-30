@@ -1,17 +1,55 @@
 <resources>
     <string name="app_name">ActiveFit</string>
+    <string name="app_moto">"""Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus"""</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- Activities names -->
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_record">Record Workout</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Fragment names -->
+    <string name="title_fragment_dashboard">Dashboard</string>
+    <string name="title_fragment_profile">My profile</string>
+    <string name="title_fragment_statistic">My Achievements</string>
+
+    <!-- Navigation Buttons -->
     <string name="title_home">Home</string>
-    <string name="title_workout_activity">Statistic</string>
+    <string name="title_workout_activity">Statistics</string>
     <string name="title_profile">Profile</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_settings">Settings</string>
+    <!-- Action buttons -->
     <string name="action_settings">Settings</string>
+    <string name="action_app_start">Get Fit</string>
+    <string name="action_start_workout">Start</string>
+
+    <!-- Textview -->
+    <string name="profile_ask_age">How old are you?</string>
+    <string name="profile_ask_gender">What is your gender?</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_no_gender">Do not wish to declare</string>
+    <string name="profile_ask_weight">What is your weight?</string>
+    <string name="profile_ask_height">What is your height?</string>
+    <string name="profile_ask_daily_goals">What is your daily steps target?</string>
+    <string name="daily_goals_easy">3000 Steps</string>
+    <string name="daily_goals_normal">6000 Steps</string>
+    <string name="daily_goals_hard">10000 Steps</string>
+    <string name="profile_ask_target_weight">What is your daily steps target?</string>
+
+    <string name="workout_running">Running</string>
+    <string name="workout_walking">Walking</string>
+    <string name="workout_duration">Duration</string>
+
+    <string name="dashboard_header_text">Today</string>
+    <string name="dashboard_steps_text">Steps</string>
+    <string name="dashboard_steps_dummy">3456</string>
+    <string name="dashboard_distance_text">Distance</string>
+    <string name="dashboard_distance_dummy">3.07km</string>
+    <string name="dashboard_active_time_text">Active Time</string>
+    <string name="dashboard_active_time_dummy">1h 25min</string>
+    <string name="dashboard_calories_text">Calories</string>
+    <string name="dashboard_calories_dummy">345 Cal</string>
+
 
     <!-- Strings related to Settings -->
 
@@ -85,4 +123,6 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_basic">BasicActivity</string>
+
+
 </resources>

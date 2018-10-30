@@ -1,9 +1,16 @@
 package com.mkenlo.activefit.db.model;
 
+
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "fitness_goals")
 public class Goals {
 
     double weight;
     int steps;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     public Goals() {
     }
