@@ -1,6 +1,5 @@
 package com.mkenlo.activefit.db;
 
-import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
@@ -20,20 +19,32 @@ public class ActiveFitRepository {
     private DailyStepsDao mDailyStepDao;
     private GoalDao mGoalDao;
 
-    ActiveFitRepository(Application application) {
-        ActiveFitDatabase db = ActiveFitDatabase.getDatabase(application);
-        mWorkoutDao = db.workoutDao();
-        mAllWorkout = mWorkoutDao.getAllWorkoutActivities();
+    static ActiveFitRepository sInstance;
+    ActiveFitDatabase mDatabase;
 
-        mUserProfileDao = db.userProfileDao();
-        mDailyStepDao = db.dailyStepsDao();
-        mGoalDao = db.goalDao();
+    public ActiveFitRepository(final ActiveFitDatabase database) {
+        mDatabase = database;
+        mWorkoutDao = mDatabase.workoutDao();
+        mUserProfileDao = mDatabase.userProfileDao();
+        mDailyStepDao = mDatabase.dailyStepsDao();
+        mGoalDao = mDatabase.goalDao();
+
+    }
+
+    public static ActiveFitRepository getInstance(final ActiveFitDatabase database) {
+        if (sInstance == null) {
+            synchronized (ActiveFitRepository.class) {
+                if (sInstance == null) {
+                    sInstance = new ActiveFitRepository(database);
+                }
+            }
+        }
+        return sInstance;
     }
 
     LiveData<List<Workout>> getAllWorkoutActivities() {
         return mAllWorkout;
     }
-
 
     public void addWorkout(Workout workout) {
         new insertAsyncTask(mWorkoutDao).execute(workout);
@@ -52,5 +63,9 @@ public class ActiveFitRepository {
             mAsyncTaskDao.addWorkout(params[0]);
             return null;
         }
+    }
+
+    public boolean isProfileSetup(){
+        return (mUserProfileDao.countUsers()>0)?true:false;
     }
 }

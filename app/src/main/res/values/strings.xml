@@ -21,6 +21,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_app_start">Get Fit</string>
     <string name="action_start_workout">Start</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_next">Next</string>
 
     <!-- Textview -->
     <string name="profile_ask_age">How old are you?</string>
@@ -34,7 +36,7 @@
     <string name="daily_goals_easy">3000 Steps</string>
     <string name="daily_goals_normal">6000 Steps</string>
     <string name="daily_goals_hard">10000 Steps</string>
-    <string name="profile_ask_target_weight">What is your daily steps target?</string>
+    <string name="profile_ask_target_weight">What is your target weight?</string>
 
     <string name="workout_running">Running</string>
     <string name="workout_walking">Walking</string>

@@ -10,7 +10,7 @@ public class Workout {
     double distance;
     String type;
     int calories;
-    Date date;
+    String date;
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -50,11 +50,11 @@ public class Workout {
         this.calories = calories;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

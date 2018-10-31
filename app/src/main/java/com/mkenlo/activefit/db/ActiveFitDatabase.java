@@ -15,24 +15,24 @@ import com.mkenlo.activefit.db.model.UserProfile;
 import com.mkenlo.activefit.db.model.Workout;
 
 
-@Database(entities = {Workout.class, UserProfile.class, Goals.class, DailySteps.class}, version = 1)
+@Database(entities = {Workout.class, UserProfile.class, Goals.class, DailySteps.class}, version = 1, exportSchema = false)
 public abstract class ActiveFitDatabase extends RoomDatabase {
 
     public abstract WorkoutDao workoutDao();
     public abstract UserProfileDao userProfileDao();
     public abstract GoalDao goalDao();
     public abstract DailyStepsDao dailyStepsDao();
+    public static String DATABASE_NAME = "activefit_database";
 
-    private static volatile ActiveFitDatabase INSTANCE;
+    private static ActiveFitDatabase INSTANCE;
+    private static final Object LOCK = new Object();
 
-    static ActiveFitDatabase getDatabase(final Context context) {
+    public static ActiveFitDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (ActiveFitDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ActiveFitDatabase.class, "activefit_database")
-                            .build();
-                }
+            synchronized (LOCK) {
+                INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                        ActiveFitDatabase.class, DATABASE_NAME)
+                        .build();
             }
         }
         return INSTANCE;

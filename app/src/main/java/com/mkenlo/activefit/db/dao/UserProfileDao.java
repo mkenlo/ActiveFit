@@ -13,7 +13,7 @@ public interface UserProfileDao {
 
 
     @Query("SELECT COUNT(*) FROM userprofile")
-    int isProfileSetup();
+    int countUsers();
 
     @Query("SELECT * FROM userprofile where id = 1")
     UserProfile getUserProfile();

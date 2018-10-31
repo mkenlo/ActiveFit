@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_appname"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintRight_toRightOf="parent"
@@ -40,9 +40,10 @@
         android:text="@string/app_moto"
         android:textColor="@color/colorTextWhite"
         android:padding="@dimen/activity_horizontal_margin"
-        android:letterSpacing="2"/>
+        android:letterSpacing="0.5"/>
 
     <Button
+        android:id="@+id/btn_app_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

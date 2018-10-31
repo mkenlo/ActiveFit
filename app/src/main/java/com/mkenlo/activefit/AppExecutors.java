@@ -1,4 +1,4 @@
-package com.mkenlo.activefit.db;
+package com.mkenlo.activefit;
 
 import android.os.Handler;
 import android.os.Looper;

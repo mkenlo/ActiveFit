@@ -1,18 +1,14 @@
 package com.mkenlo.activefit.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-
-import com.mkenlo.activefit.MainActivity;
 import com.mkenlo.activefit.R;
 
-import butterknife.BindView;
+
 import butterknife.ButterKnife;
 
 /**
@@ -20,7 +16,7 @@ import butterknife.ButterKnife;
  */
 public class ProfileSetupThreeFragment extends Fragment {
 
-    @BindView(R.id.ib_done) ImageButton mIbDone;
+
     public ProfileSetupThreeFragment() {
         // Required empty public constructor
     }
@@ -32,14 +28,14 @@ public class ProfileSetupThreeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile_setup_three, container, false);
         ButterKnife.bind(this, rootView);
-        mIbDone.setOnClickListener(new View.OnClickListener() {
+        /*mIbDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),
                         MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         return rootView;
     }
 

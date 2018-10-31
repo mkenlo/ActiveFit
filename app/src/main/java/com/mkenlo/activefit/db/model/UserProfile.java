@@ -58,4 +58,8 @@ public class UserProfile {
     public void setHeight(double height) {
         this.height = height;
     }
+
+    public int getId() {return id; }
+
+    public void setId(int id) {this.id = id;}
 }

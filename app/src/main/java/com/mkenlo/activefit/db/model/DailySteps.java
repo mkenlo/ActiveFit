@@ -3,13 +3,11 @@ package com.mkenlo.activefit.db.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity(tableName = "dailysteps")
 public class DailySteps {
 
     public int count;
-    public Date date;
+    public String date;
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -25,11 +23,19 @@ public class DailySteps {
         this.count = count;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

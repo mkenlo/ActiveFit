@@ -1,5 +1,6 @@
 package com.mkenlo.activefit;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -9,44 +10,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.mkenlo.activefit.fragment.ProfileSetupOneFragment;
 import com.mkenlo.activefit.fragment.ProfileSetupThreeFragment;
 import com.mkenlo.activefit.fragment.ProfileSetupTwoFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ProfileSetupActivity extends FragmentActivity {
     static final int NUM_PAGE_SETUP = 3;
     ProfileSetupAdapter mAdapter;
-    ViewPager mPager;
+    public @BindView(R.id.pager) ViewPager mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_setup);
+        ButterKnife.bind(this);
 
         mAdapter = new ProfileSetupAdapter(getSupportFragmentManager());
-
-        mPager = findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position == NUM_PAGE_SETUP-1){
+                    Intent intent = new Intent(ProfileSetupActivity.this,
+                            MainActivity.class);
+                    startActivity(intent);
+                }
+            }
 
-        // Watch for button clicks.
-        Button button = findViewById(R.id.goto_first);
-        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                mPager.setCurrentItem(0);
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
-        button = findViewById(R.id.goto_last);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPager.setCurrentItem(NUM_PAGE_SETUP-1);
-            }
-        });
+
+
     }
-
-
 
     public class ProfileSetupAdapter extends FragmentPagerAdapter {
 
