@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_full_circle" />
-                            <entry key="sourceFile" value="C:\Users\Melanie Lontsi\Downloads\man-user.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_runner" />
+                            <entry key="sourceFile" value="C:\Users\Melanie Lontsi\Downloads\runner.svg" />
                           </map>
                         </option>
                       </PersistentState>

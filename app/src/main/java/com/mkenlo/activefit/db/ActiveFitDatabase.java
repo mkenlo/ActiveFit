@@ -6,21 +6,18 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.mkenlo.activefit.db.dao.DailyStepsDao;
-import com.mkenlo.activefit.db.dao.GoalDao;
 import com.mkenlo.activefit.db.dao.UserProfileDao;
 import com.mkenlo.activefit.db.dao.WorkoutDao;
 import com.mkenlo.activefit.db.model.DailySteps;
-import com.mkenlo.activefit.db.model.Goals;
 import com.mkenlo.activefit.db.model.UserProfile;
 import com.mkenlo.activefit.db.model.Workout;
 
 
-@Database(entities = {Workout.class, UserProfile.class, Goals.class, DailySteps.class}, version = 1, exportSchema = false)
+@Database(entities = {Workout.class, UserProfile.class, DailySteps.class}, version = 1, exportSchema = false)
 public abstract class ActiveFitDatabase extends RoomDatabase {
 
     public abstract WorkoutDao workoutDao();
     public abstract UserProfileDao userProfileDao();
-    public abstract GoalDao goalDao();
     public abstract DailyStepsDao dailyStepsDao();
     public static String DATABASE_NAME = "activefit_database";
 

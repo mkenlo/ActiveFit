@@ -13,6 +13,8 @@ public class UserProfile {
     int age;
     double weight;
     double height;
+    double targetWeight;
+    int targetSteps;
 
 
 
@@ -62,4 +64,20 @@ public class UserProfile {
     public int getId() {return id; }
 
     public void setId(int id) {this.id = id;}
+
+    public double getTargetWeight() {
+        return targetWeight;
+    }
+
+    public void setTargetWeight(double targetWeight) {
+        this.targetWeight = targetWeight;
+    }
+
+    public int getTargetSteps() {
+        return targetSteps;
+    }
+
+    public void setTargetSteps(int targetSteps) {
+        this.targetSteps = targetSteps;
+    }
 }

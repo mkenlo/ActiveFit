@@ -12,7 +12,7 @@ public class BaseApp extends Application {
         super.onCreate();
     }
 
-    public ActiveFitDatabase getDatabase() {
+    private ActiveFitDatabase getDatabase() {
         return ActiveFitDatabase.getDatabase(this);
     }
 

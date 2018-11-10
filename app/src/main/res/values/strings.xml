@@ -33,6 +33,11 @@
     <string name="profile_ask_weight">What is your weight?</string>
     <string name="profile_ask_height">What is your height?</string>
     <string name="profile_ask_daily_goals">What is your daily steps target?</string>
+    <string-array name="daily_goals_list">
+        <item>3000 Steps</item>
+        <item>6000 Steps</item>
+        <item>10000 Steps</item>
+    </string-array>
     <string name="daily_goals_easy">3000 Steps</string>
     <string name="daily_goals_normal">6000 Steps</string>
     <string name="daily_goals_hard">10000 Steps</string>
