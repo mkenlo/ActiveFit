@@ -22,25 +22,24 @@
         android:textStyle="bold"
         android:padding="@dimen/activity_horizontal_margin"/>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:src="@drawable/ic_trail_running_shoe"
+        app:srcCompat="@drawable/ic_trail_running_shoe"
         app:layout_constraintTop_toBottomOf="@id/tv_appname"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="@string/app_moto"
         android:textColor="@color/colorTextWhite"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:letterSpacing="0.5"/>
+        android:padding="@dimen/activity_horizontal_margin"/>
 
     <Button
         android:id="@+id/btn_app_start"

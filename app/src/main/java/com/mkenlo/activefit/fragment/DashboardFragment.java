@@ -1,15 +1,36 @@
 package com.mkenlo.activefit.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.fitness.Fitness;
+import com.google.android.gms.fitness.FitnessOptions;
+import com.google.android.gms.fitness.HistoryClient;
+import com.google.android.gms.fitness.data.DataSet;
+import com.google.android.gms.fitness.data.DataType;
+import com.google.android.gms.fitness.data.Field;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.mkenlo.activefit.R;
 import com.mkenlo.activefit.RecordWorkoutActivity;
 
@@ -18,40 +39,28 @@ import butterknife.ButterKnife;
 
 
 public class DashboardFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-
+    private static final int REQUEST_OAUTH_REQUEST_CODE = 0x1001;
     public @BindView(R.id.fab_start_workout)  FloatingActionButton mStartWorkout;
+    public @BindView(R.id.tv_today_steps)     TextView mTodaySteps;
+    public @BindView(R.id.tv_today_calories_burned)  TextView mTodayCalories;
+    public @BindView(R.id.tv_today_distance)  TextView mTodayDistance;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    //private OnFragmentInteractionListener mListener;
 
     public DashboardFragment() {
         // Required empty public constructor
     }
 
-    public static DashboardFragment newInstance(String param1, String param2) {
+    public static DashboardFragment newInstance() {
         DashboardFragment fragment = new DashboardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -69,45 +78,168 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+
+        FitnessOptions fitnessOptions =
+                FitnessOptions.builder()
+                        .addDataType(DataType.TYPE_STEP_COUNT_CUMULATIVE)
+                        .addDataType(DataType.TYPE_STEP_COUNT_DELTA)
+                        .addDataType(DataType.TYPE_DISTANCE_CUMULATIVE)
+                        .addDataType(DataType.TYPE_DISTANCE_DELTA)
+                        .addDataType(DataType.AGGREGATE_ACTIVITY_SUMMARY)
+                        .build();
+
+        if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(getContext()), fitnessOptions)) {
+            GoogleSignIn.requestPermissions(
+                    this,
+                    REQUEST_OAUTH_REQUEST_CODE,
+                    GoogleSignIn.getLastSignedInAccount(getContext()),
+                    fitnessOptions);
+        } else {
+            subscribe();
+        }
+
+
         return rootView;
     }
-/*
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_OAUTH_REQUEST_CODE) {
+                subscribe();
+            }
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+    /** Records step data by requesting a subscription to background step data. */
+    public void subscribe() {
+        // To create a subscription, invoke the Recording API. As soon as the subscription is
+        // active, fitness data will start recording.
+        Fitness.getRecordingClient(getActivity(), GoogleSignIn.getLastSignedInAccount(getContext()))
+                .subscribe(DataType.TYPE_STEP_COUNT_CUMULATIVE)
+                .addOnCompleteListener(
+                        new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(
+                                            getContext(),
+                                            "Thank you for you subscription",
+                                            Toast.LENGTH_SHORT);
+                                } else {
+                                    Toast.makeText(
+                                            getContext(),
+                                            "Authorization Failed",
+                                            Toast.LENGTH_SHORT);
+                                    Log.d(
+                                            "USER AUTHORIZATION",
+                                            "There was a problem subscribing.",
+                                            task.getException());
+                                }
+                            }
+                        });
+        getTodayStepsCount();
+        getTodayCalories();
+        getTodayDistance();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+
+    private void getTodayStepsCount() {
+        Fitness.getHistoryClient(
+                getActivity(), GoogleSignIn.getLastSignedInAccount(getContext()))
+                .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
+                .addOnSuccessListener(
+                        new OnSuccessListener<DataSet>() {
+                            @Override
+                            public void onSuccess(DataSet dataSet) {
+                                long total =
+                                        dataSet.isEmpty()
+                                                ? 0
+                                                : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
+                                mTodaySteps.setText(String.valueOf(total));
+                            }
+                        })
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(
+                                        getContext(),
+                                        "Authorization Failed. Unable to get step Count",
+                                        Toast.LENGTH_SHORT);
+                                mTodaySteps.setText(0);
+
+                            }
+                        });
+
+
     }
 
-    *//**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *//*
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
+    private void getTodayCalories(){
+        Fitness.getHistoryClient(
+                getActivity(), GoogleSignIn.getLastSignedInAccount(getContext()))
+                .readDailyTotal(DataType.TYPE_CALORIES_EXPENDED)
+                .addOnSuccessListener(
+                        new OnSuccessListener<DataSet>() {
+                            @Override
+                            public void onSuccess(DataSet dataSet) {
+                                Log.d("Calories:", dataSet.getDataPoints().toString());
+                                float total = dataSet.isEmpty()
+                                        ? 0 : dataSet.getDataPoints().get(0).getValue(
+                                                Field.FIELD_CALORIES).asFloat();
+                                int roundTotal = Math.round(total);
+                                mTodayCalories.setText(String.valueOf(roundTotal)+" Cal");
+                            }
+                        }
+                )
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(
+                                        getContext(),
+                                        "Authorization Failed. Unable to get step Count",
+                                        Toast.LENGTH_SHORT);
+                                mTodayCalories.setText(0+" Cal");
+
+                            }
+                        });
+    }
+
+    private void getTodayDistance(){
+        Log.d("Distance:", "This is Distance method");
+        Fitness.getHistoryClient(
+                getActivity(), GoogleSignIn.getLastSignedInAccount(getContext()))
+                .readDailyTotal(DataType.TYPE_DISTANCE_DELTA)
+                .addOnSuccessListener(
+                        new OnSuccessListener<DataSet>() {
+                            @Override
+                            public void onSuccess(DataSet dataSet) {
+                                Log.d("Distance:", dataSet.getDataPoints().toString());
+                                float total = dataSet.isEmpty()
+                                        ? 0 : dataSet.getDataPoints().get(0).getValue(
+                                        Field.FIELD_DISTANCE).asFloat();
+                                int roundTotal = Math.round(total);
+                                mTodayDistance.setText(String.valueOf(roundTotal)+" m");
+                            }
+                        }
+                )
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(
+                                        getContext(),
+                                        "Authorization Failed. Unable to get step Count",
+                                        Toast.LENGTH_SHORT);
+                                Log.d("DISTANCE", "Failed" );
+                                mTodayDistance.setText(0+" m");
+
+
+
+                            }
+                        });
+    }
+
+
 }

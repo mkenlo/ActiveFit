@@ -3,15 +3,16 @@
     package="com.mkenlo.activefit">
 
     <application
-        android:name="com.mkenlo.activefit.BaseApp"
+        android:name=".BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileSetupActivity"
-            android:label="@string/title_activity_record"/>
+        <activity
+            android:name=".ProfileSetupActivity"
+            android:label="@string/title_activity_record" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -19,13 +20,25 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_home" />
         <activity android:name=".RecordWorkoutActivity" />
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".widget.ActiveFitWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/active_fit_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
