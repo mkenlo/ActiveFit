@@ -42,6 +42,14 @@
     <string name="daily_goals_normal">6000 Steps</string>
     <string name="daily_goals_hard">10000 Steps</string>
     <string name="profile_ask_target_weight">What is your target weight?</string>
+    <string name="profile_username">My profile</string>
+    <string name="profile_label_age">Age</string>
+    <string name="profile_label_gender">Gender</string>
+    <string name="profile_label_height">Height</string>
+    <string name="profile_label_weight">Weight</string>
+    <string name="profile_label_target_steps">Target Steps</string>
+    <string name="profile_label_target_weight">Target Weight</string>
+
 
     <string name="workout_running">Running</string>
     <string name="workout_walking">Walking</string>
@@ -122,15 +130,14 @@
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
-
     <string name="pref_title_new_message_notifications">New message notifications</string>
-
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
-
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_basic">BasicActivity</string>
-    <string name="appwidget_text">EXAMPLE</string>
+
+    <!-- Widget -->
+    <string name="appwidget_text">steps</string>
     <string name="add_widget">Add widget</string>
 
 

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import com.mkenlo.activefit.db.dao.DailyStepsDao;
 import com.mkenlo.activefit.db.dao.UserProfileDao;
 import com.mkenlo.activefit.db.dao.WorkoutDao;
+import com.mkenlo.activefit.db.model.DailySteps;
 import com.mkenlo.activefit.db.model.UserProfile;
 import com.mkenlo.activefit.db.model.Workout;
 
@@ -61,4 +62,9 @@ public class ActiveFitRepository {
         mDatabase.userProfileDao().updateUserProfile(updateProfile);
     }
 
+    public DailySteps getTodayActivity(){
+        DailySteps today = new DailySteps();
+        today.setCount(543);
+        return  today;
+    }
 }

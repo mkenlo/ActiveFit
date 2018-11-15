@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="My profile"
+            android:text="@string/profile_username"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             style="@style/TextLabel"
-            android:text="Age"
+            android:text="@string/profile_label_age"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextLabel"
-            android:text="Gender"
+            android:text="@string/profile_label_gender"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_age_label"
             app:layout_constraintLeft_toRightOf="@id/tv_age_label" />
 
@@ -53,7 +53,7 @@
             android:id="@+id/tv_height_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Height"
+            android:text="@string/profile_label_height"
             style="@style/TextLabel"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_age_label"
             app:layout_constraintRight_toLeftOf="@id/tv_weight_label" />
@@ -63,14 +63,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextLabel"
-            android:text="Weight"
+            android:text="@string/profile_label_weight"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_age_label"
             app:layout_constraintRight_toRightOf="parent" />
         <TextView
             android:id="@+id/tv_user_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_age_label"
             android:padding="@dimen/activity_horizontal_margin"/>
@@ -78,7 +77,6 @@
             android:id="@+id/tv_user_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="P"
             app:layout_constraintStart_toStartOf="@id/tv_gender_label"
             app:layout_constraintTop_toBottomOf="@id/tv_gender_label"
             android:padding="@dimen/activity_horizontal_margin"/>
@@ -86,7 +84,6 @@
             android:id="@+id/tv_user_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="154kg"
             app:layout_constraintStart_toStartOf="@id/tv_weight_label"
             app:layout_constraintTop_toBottomOf="@id/tv_weight_label"
             android:padding="@dimen/activity_horizontal_margin"/>
@@ -94,7 +91,6 @@
             android:id="@+id/tv_user_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="163cm"
             app:layout_constraintStart_toStartOf="@id/tv_height_label"
             app:layout_constraintTop_toBottomOf="@id/tv_height_label"
             android:padding="@dimen/activity_horizontal_margin"/>
@@ -104,7 +100,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Target Step"
+            android:text="@string/profile_label_target_steps"
+            android:contentDescription="@string/profile_label_target_steps"
             style="@style/TextLabel"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_user_age" />
@@ -112,7 +109,6 @@
             android:id="@+id/tv_goal_steps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6000"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_target_step_label"
             app:layout_constraintRight_toRightOf="parent"
             android:paddingHorizontal="@dimen/activity_horizontal_margin"/>
@@ -122,7 +118,8 @@
             android:id="@+id/tv_target_weight_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Target Weight"
+            android:text="@string/profile_label_target_weight"
+            android:contentDescription="@string/profile_label_target_weight"
             style="@style/TextLabel"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_target_step_label" />
@@ -130,10 +127,11 @@
             android:id="@+id/tv_goal_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123kg"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_target_weight_label"
             app:layout_constraintRight_toRightOf="parent"
-            android:paddingHorizontal="@dimen/activity_horizontal_margin"/>
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"/>
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

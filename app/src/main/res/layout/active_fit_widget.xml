@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorPrimaryDark"
+    android:padding="@dimen/widget_margin">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:contentDescription="runner silhouette"
+        android:src="@drawable/ic_runner_man"/>
+
+    <TextView
+        android:id="@+id/appwidget_num_steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/appwidget_text"
+        android:text="9864"
+        android:textColor="#ffffff"
+        android:textSize="48sp"/>
+
+    <TextView
+        android:id="@+id/appwidget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/appwidget_text"
+        android:text="@string/appwidget_text"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="8dp"
+        android:textSize="18sp"
+        android:layout_gravity="bottom"/>
+
+</LinearLayout>

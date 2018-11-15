@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String SELECTED_ITEM = "arg_selected_item";
     private int mSelectedItem;
-    private TextView mTextMessage;
     public @BindView(R.id.navigation) BottomNavigationView mBottomNavigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mTextMessage = findViewById(R.id.message);
         mBottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         MenuItem selectedItem;
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
             selectedItem = mBottomNavigation.getMenu().findItem(mSelectedItem);
         } else {
-            selectedItem = mBottomNavigation.getMenu().getItem(2);
+            selectedItem = mBottomNavigation.getMenu().getItem(0);
         }
         selectFragment(selectedItem);
 
