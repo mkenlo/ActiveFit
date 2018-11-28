@@ -104,10 +104,6 @@ public class ProfileSetupOneFragment extends Fragment implements ProfileSetupAct
 
     }
 
-    public boolean validateInput(){
-
-        return true;
-    }
 
     public String selectGender(int id){
         switch(id){
@@ -126,8 +122,4 @@ public class ProfileSetupOneFragment extends Fragment implements ProfileSetupAct
         setProfile();
     }
 
-   /* @Override
-    public void currentPageSelected() {
-        mActivity.setOnStepDoneListener(this);
-    }*/
 }

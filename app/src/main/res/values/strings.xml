@@ -23,6 +23,7 @@
     <string name="action_start_workout">Start</string>
     <string name="action_previous">Previous</string>
     <string name="action_next">Next</string>
+    <string name="action_profile_setup_done">Done</string>
 
     <!-- Textview -->
     <string name="profile_ask_age">How old are you?</string>
@@ -59,11 +60,11 @@
     <string name="dashboard_steps_text">Steps</string>
     <string name="dashboard_steps_dummy">3456</string>
     <string name="dashboard_distance_text">Distance</string>
-    <string name="dashboard_distance_dummy">3.07km</string>
+    <string name="dashboard_distance_default">0 km</string>
     <string name="dashboard_active_time_text">Active Time</string>
-    <string name="dashboard_active_time_dummy">1h 25min</string>
+    <string name="dashboard_active_time_default">0 mn</string>
     <string name="dashboard_calories_text">Calories</string>
-    <string name="dashboard_calories_dummy">345 Cal</string>
+    <string name="dashboard_calories_default">0 Cal</string>
 
 
     <!-- Strings related to Settings -->
@@ -139,6 +140,7 @@
     <!-- Widget -->
     <string name="appwidget_text">steps</string>
     <string name="add_widget">Add widget</string>
+    <string name="appwidget_img">Runner silhouette</string>
 
 
 </resources>

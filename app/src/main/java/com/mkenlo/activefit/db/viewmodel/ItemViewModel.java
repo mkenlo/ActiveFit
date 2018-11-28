@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.mkenlo.activefit.BaseApp;
 import com.mkenlo.activefit.db.ActiveFitRepository;
+import com.mkenlo.activefit.db.model.DailySteps;
 import com.mkenlo.activefit.db.model.UserProfile;
 
 public class ItemViewModel extends AndroidViewModel {
@@ -20,5 +21,9 @@ public class ItemViewModel extends AndroidViewModel {
 
     public LiveData<UserProfile> getProfile(){
         return mRepository.getLiveUserProfile();
+    }
+
+    public  LiveData<DailySteps> getTodayActivity(){
+        return mRepository.getLiveActivity();
     }
 }

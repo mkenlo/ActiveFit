@@ -31,8 +31,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.mkenlo.activefit.AppExecutors;
+import com.mkenlo.activefit.BaseApp;
 import com.mkenlo.activefit.R;
 import com.mkenlo.activefit.RecordWorkoutActivity;
+import com.mkenlo.activefit.db.ActiveFitRepository;
+import com.mkenlo.activefit.db.model.DailySteps;
+import com.mkenlo.activefit.db.model.UserProfile;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -157,6 +164,7 @@ public class DashboardFragment extends Fragment {
                                                 ? 0
                                                 : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
                                 mTodaySteps.setText(String.valueOf(total));
+                                saveStepInDB(total);
                             }
                         })
                 .addOnFailureListener(
@@ -183,7 +191,6 @@ public class DashboardFragment extends Fragment {
                         new OnSuccessListener<DataSet>() {
                             @Override
                             public void onSuccess(DataSet dataSet) {
-                                Log.d("Calories:", dataSet.getDataPoints().toString());
                                 float total = dataSet.isEmpty()
                                         ? 0 : dataSet.getDataPoints().get(0).getValue(
                                                 Field.FIELD_CALORIES).asFloat();
@@ -207,7 +214,6 @@ public class DashboardFragment extends Fragment {
     }
 
     private void getTodayDistance(){
-        Log.d("Distance:", "This is Distance method");
         Fitness.getHistoryClient(
                 getActivity(), GoogleSignIn.getLastSignedInAccount(getContext()))
                 .readDailyTotal(DataType.TYPE_DISTANCE_DELTA)
@@ -241,5 +247,28 @@ public class DashboardFragment extends Fragment {
                         });
     }
 
+    void saveStepInDB(final long steps){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        final String today = sdf.format(new Date());
+        //System.out.println(today); //15/10/2013
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                ActiveFitRepository repo = ((BaseApp) getActivity().getApplication()).getRepository();
+                DailySteps todayActivity = repo.getTodayActivity();
+                if(todayActivity == null){
+                    todayActivity = new DailySteps();
+                    todayActivity.setCount((int)steps);
+                    todayActivity.setDate(today);
+                    repo.insertTodayActivity(todayActivity);
+                    Log.d("SAVE_IN_DATABASE", "this is a new day");
+                }else if(steps > todayActivity.getCount()){
+                    todayActivity.setCount((int) steps);
+                    repo.updateTodayActivity(todayActivity);
+                    Log.d("SAVE_IN_DATABASE", "this is update the day");
+                }
 
+            }
+        });
+    }
 }

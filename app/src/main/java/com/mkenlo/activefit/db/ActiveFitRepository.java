@@ -8,6 +8,8 @@ import com.mkenlo.activefit.db.model.DailySteps;
 import com.mkenlo.activefit.db.model.UserProfile;
 import com.mkenlo.activefit.db.model.Workout;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ActiveFitRepository {
@@ -63,8 +65,23 @@ public class ActiveFitRepository {
     }
 
     public DailySteps getTodayActivity(){
-        DailySteps today = new DailySteps();
-        today.setCount(543);
-        return  today;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        String today = sdf.format(new Date());
+        DailySteps todayStep = mDailyStepDao.getTodaySteps(today);
+        return todayStep;
+    }
+
+    public LiveData<DailySteps> getLiveActivity(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        String today = sdf.format(new Date());
+        return mDailyStepDao.getLiveTodaySteps(today);
+    }
+
+    public void updateTodayActivity(DailySteps activity){
+        mDailyStepDao.updateSteps(activity);
+    }
+
+    public void insertTodayActivity(DailySteps activity){
+        mDailyStepDao.insertSteps(activity);
     }
 }

@@ -9,9 +9,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.mkenlo.activefit.fragment.DashboardFragment;
 import com.mkenlo.activefit.fragment.ProfileFragment;
@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
     private int mSelectedItem;
     public @BindView(R.id.navigation) BottomNavigationView mBottomNavigation;
+    public @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mBottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        setSupportActionBar(mToolbar);
 
         MenuItem selectedItem;
         if (savedInstanceState != null) {

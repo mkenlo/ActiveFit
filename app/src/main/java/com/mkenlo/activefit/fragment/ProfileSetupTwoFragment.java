@@ -27,6 +27,7 @@ public class ProfileSetupTwoFragment extends Fragment implements ProfileSetupAct
     public @BindView(R.id.sb_user_height)
     SeekBar mSbUserHeight;
 
+
     public @BindView(R.id.sb_user_weight)
     SeekBar mSbUserWeight;
 
